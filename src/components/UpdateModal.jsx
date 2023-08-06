@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useUpdateTodoMutation } from "./hooks/react-query-hooks";
 import toast from "react-hot-toast";
 
-const UpdateModal = ({ isUpdateModalOpen, toggleUpdateModal, id }) => {
+const UpdateModal = ({ isUpdateModalOpen, toggleUpdateModal, id, title }) => {
   const { mutate, isLoading } = useUpdateTodoMutation();
   const updateRef = useRef(null);
 
@@ -22,7 +22,7 @@ const UpdateModal = ({ isUpdateModalOpen, toggleUpdateModal, id }) => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({ defaultValues: { title } });
 
   const onSubmit = (data) => {
     mutate({ id, ...data }, { onSuccess: toast.success("Todo was updated!") });
@@ -41,11 +41,10 @@ const UpdateModal = ({ isUpdateModalOpen, toggleUpdateModal, id }) => {
           <hr className="w-full" />
           <div className="w-full">
             <input
-              type="text"
-              className="border shadow text-gray-700 text-sm font-medium rounded-md w-full pl-3 py-2 focus:outline-none"
+              type="search"
+              className="border shadow text-gray-700 text-sm font-medium rounded-md w-full px-3 py-2 focus:outline-none"
               placeholder="Add todo..."
               id="todo"
-              //   value={}
               {...register("title", { required: "Add a todo" })}
             />
             {errors.title && (

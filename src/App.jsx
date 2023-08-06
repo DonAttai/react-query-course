@@ -44,13 +44,13 @@ function App() {
         {/* Add Todo Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="max-w-lg mx-auto mt-4 mb-5"
+          className="max-w-lg mx-auto mt-4 mb-10"
         >
-          <div className="flex flex-col">
-            <div>
+          <div className="flex flex-col gap-2 w-full">
+            <div className="w-full flex flex-col items-center">
               <input
-                type="text"
-                className=" mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none"
+                type="search"
+                className="w-full h-10 mb-1 px-4 text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block py-1.5 shadow focus:outline-none"
                 placeholder="Add todo..."
                 id="todo"
                 {...register("title", { required: "Add a todo" })}
@@ -63,7 +63,7 @@ function App() {
             <button
               type="submit"
               disabled={addTodo.isLoading}
-              className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700"
+              className="w-full h-10 shadow bg-blue-400 py-1.5 text-white rounded-lg"
             >
               {addTodo.isLoading ? "Adding..." : "Add Todo"}
             </button>
