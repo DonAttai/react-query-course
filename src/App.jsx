@@ -1,9 +1,6 @@
 import { useForm } from "react-hook-form";
 import TodoItem from "./components/TodoItem";
-import {
-  useAddTodoMutation,
-  useTodosQuery,
-} from "./components/hooks/react-query-hooks";
+import { useAddTodoMutation, useTodosQuery } from "./hooks/react-query-hooks";
 import toast from "react-hot-toast";
 
 function App() {

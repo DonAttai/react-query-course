@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useRef } from "react";
-import { useUpdateTodoMutation } from "./hooks/react-query-hooks";
+import { useUpdateTodoMutation } from "../hooks/react-query-hooks";
 import toast from "react-hot-toast";
 
 const UpdateModal = ({ isUpdateModalOpen, toggleUpdateModal, id, title }) => {
@@ -25,7 +25,7 @@ const UpdateModal = ({ isUpdateModalOpen, toggleUpdateModal, id, title }) => {
   } = useForm({ defaultValues: { title } });
 
   const onSubmit = (data) => {
-    mutate({ id, ...data }, { onSuccess: toast.success("Todo was updated!") });
+    mutate({ ...data, id }, { onSuccess: toast.success("Todo was updated!") });
     toggleUpdateModal();
     reset();
   };

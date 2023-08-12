@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useDeleteTodoMutation } from "./hooks/react-query-hooks";
+import { useDeleteTodoMutation } from "../hooks/react-query-hooks";
 import toast from "react-hot-toast";
 
 const DeleteModal = ({ isDeleteModalOpen, toggleDeleteModal, todo }) => {

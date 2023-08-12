@@ -3,7 +3,7 @@ import DeleteModal from "./DeleteModal";
 import UpdateModal from "./UpdateModal";
 import { AiOutlineDelete } from "react-icons/ai";
 import { LuEdit } from "react-icons/lu";
-import { useToggleTodoMutation } from "./hooks/react-query-hooks";
+import { useToggleTodoMutation } from "../hooks/react-query-hooks";
 
 const TodoItem = ({ todo }) => {
   const [isDeleteModalOpen, toggleDeleteModal] = React.useReducer(
