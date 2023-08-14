@@ -1,4 +1,4 @@
-import React from "react";
+import { useReducer } from "react";
 import DeleteModal from "./DeleteModal";
 import UpdateModal from "./UpdateModal";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -6,26 +6,26 @@ import { LuEdit } from "react-icons/lu";
 import { useToggleTodoMutation } from "../hooks/react-query-hooks";
 
 const TodoItem = ({ todo }) => {
-  const [isDeleteModalOpen, toggleDeleteModal] = React.useReducer(
-    (previous) => !previous,
+  const [isUpdateModalOpen, toggleUpdateModal] = useReducer(
+    (prevState) => !prevState,
     false
   );
-  const [isUpdateModalOpen, toggleUpdateModal] = React.useReducer(
-    (previous) => !previous,
+  const [isDeleteModalOpen, toggleDeleteModal] = useReducer(
+    (prevState) => !prevState,
     false
   );
   const toggleTodo = useToggleTodoMutation();
 
   return (
     <>
+      {isDeleteModalOpen && (
+        <DeleteModal
+          todo={todo}
+          isModalOpen={isDeleteModalOpen}
+          toggleModal={toggleDeleteModal}
+        />
+      )}
       <li className="py-4 px-6 flex items-center">
-        {isDeleteModalOpen && (
-          <DeleteModal
-            todo={todo}
-            isDeleteModalOpen={isDeleteModalOpen}
-            toggleDeleteModal={toggleDeleteModal}
-          />
-        )}
         <input
           type="checkbox"
           className="form-checkbox h-5 w-5 text-blue-500"
@@ -42,10 +42,11 @@ const TodoItem = ({ todo }) => {
         <span className="ml-4  ">
           <button
             className="text-white font-extrabold p-2 rounded bg-red-600 ml-2 mr-2"
-            onClick={() => toggleDeleteModal()}
+            onClick={toggleDeleteModal}
           >
             <AiOutlineDelete />
           </button>
+
           <button
             onClick={() => toggleUpdateModal()}
             className="text-white font-extrabold bg-blue-600 p-2 rounded"
@@ -56,9 +57,9 @@ const TodoItem = ({ todo }) => {
 
         {isUpdateModalOpen && (
           <UpdateModal
-            isUpdateModalOpen={isUpdateModalOpen}
-            toggleUpdateModal={toggleUpdateModal}
-            {...todo}
+            isModalOpen={isUpdateModalOpen}
+            toggleModal={toggleUpdateModal}
+            todo={todo}
           />
         )}
       </li>

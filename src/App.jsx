@@ -27,7 +27,7 @@ function App() {
   };
 
   if (todosQuery.isLoading) {
-    return <h1 className="text-2xl">Loading...</h1>;
+    return <h1 className="text-2xl text-center mt-5">Loading...</h1>;
   }
 
   if (todosQuery.isError) {
